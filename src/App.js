@@ -1,11 +1,11 @@
 import logo from "./logo.svg";
-import "./App.css";
+import "./CSS/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import Layout from "./Layout";
-import Home from "./Home";
-import MyList from "./MyList";
-import SearchMovie from "./SearchMovie";
+import Home from "./PAGES/Home";
+import MyList from "./PAGES/MyList";
+import SearchMovie from "./PAGES/SearchMovie";
 
 //https://api.themoviedb.org/3/search/movie?api_key=f402a4b12e741e93d7e20be5d6f634d6&query=Jack+Reacher
 

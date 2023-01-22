@@ -1,0 +1,18 @@
+import "C:/Users/alek1/OneDrive/Documents/Programming/react/moviesRecomendationsApp/movies-rec-app/src/CSS/MovieTvDesc.css";
+
+export default function MovieTvDesc(props) {
+  return (
+    <div className="movieTvDesc">
+      <img src={props.backdrop_path} alt={props.title} className="backdrop" />
+      <div className="desc">
+        <img src={props.poster} alt={props.title} />
+        <div className="titleDesc">
+          <p className="titleCard">{props.title}</p>
+          <p className="description">{props.overview}</p>
+          <p>Scoring: {props.vote_average.toFixed(1)}</p>
+          <p>{props.release_date.toString().slice(0, 4)}</p>
+        </div>
+      </div>
+    </div>
+  );
+}

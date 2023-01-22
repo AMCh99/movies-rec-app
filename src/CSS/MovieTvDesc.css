@@ -1,0 +1,50 @@
+.movieTvDesc {
+  /* background-color: black; */
+}
+
+.backdrop {
+  width: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  height: 45rem;
+  -webkit-box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527;
+  box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527;
+  filter: grayscale(60%);
+}
+
+.desc {
+  display: flex;
+  position: absolute;
+  /* border: 5px green solid; */
+  width: 90%;
+  top: 7rem;
+  left: 5rem;
+}
+
+.desc img {
+  width: 25rem;
+  -webkit-box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527;
+  box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527;
+}
+.titleDesc {
+  font-size: 2rem;
+  color: white;
+  text-shadow: 2px 2px black;
+}
+
+.titleDesc {
+  display: inline-flexbox;
+  margin: 2rem;
+  text-align: end;
+  float: right;
+}
+.movieTvDesc .titleCard {
+  font-size: 3rem;
+  color: white;
+  text-shadow: 2px 2px black;
+  margin-bottom: 2rem;
+  bottom: 0;
+  /* background-color: aqua; */
+}
