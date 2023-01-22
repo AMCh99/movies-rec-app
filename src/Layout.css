@@ -1,0 +1,27 @@
+* {
+  margin: 0%;
+  padding: 0%;
+}
+nav {
+  width: 50%;
+  margin: auto;
+}
+ul {
+  display: flex;
+  background-color: rgba(185, 178, 178, 0.973);
+  justify-content: space-between;
+  padding: 5px;
+}
+
+li {
+  list-style: none;
+}
+
+.navP {
+  font-size: 30px;
+  text-decoration: none;
+}
+
+:link {
+  text-decoration: none;
+}

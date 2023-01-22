@@ -1,0 +1,14 @@
+* {
+  margin: 0%;
+  padding: 0%;
+}
+
+.trendingApp {
+  margin: 1rem;
+}
+
+.trendingMovies,
+.trendingTvs {
+  display: flex;
+  gap: 10px;
+}
