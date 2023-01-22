@@ -1,6 +1,11 @@
 import logo from "./logo.svg";
 import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
+import Layout from "./Layout";
+import Home from "./Home";
+import MyList from "./MyList";
+import SearchMovie from "./SearchMovie";
 
 //https://api.themoviedb.org/3/search/movie?api_key=f402a4b12e741e93d7e20be5d6f634d6&query=Jack+Reacher
 
@@ -16,18 +21,28 @@ const EXAMPLE_QUERY2 = `
 https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=Jack+Reacher`;
 
 function App() {
-  const searchMovies = async () => {
-    const response = await fetch(`${EXAMPLE_QUERY2}`);
-    const data = await response.json();
+  // const searchMovies = async () => {
+  //   const response = await fetch(`${EXAMPLE_QUERY2}`);
+  //   const data = await response.json();
 
-    console.log(data);
-  };
+  //   console.log(data);
+  // };
 
-  useEffect(() => {
-    searchMovies();
-  }, []);
+  // useEffect(() => {
+  //   searchMovies();
+  // }, []);
 
-  return <div className="App"></div>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route exact path="MyList" element={<MyList />} />
+          <Route exact path="SearchMovie" element={<SearchMovie />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
