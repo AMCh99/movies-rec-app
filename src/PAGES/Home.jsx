@@ -24,7 +24,7 @@ export default function Home() {
   const top5m = movies.slice(0, 5);
   const top5t = tv.slice(0, 5);
   const topMoviesTvs = top5m.concat(top5t);
-  console.log(topMoviesTvs);
+  // console.log(topMoviesTvs);
   const mov0 = {
     adult: false,
     backdrop_path: "/s16H6tpK2utvwDtzZ8Qy4qm5Emw.jpg",
@@ -54,6 +54,7 @@ export default function Home() {
 
     data_tv.results.map((i) => {
       i.release_date = i.first_air_date;
+      i.title = i.name;
     });
 
     setMovies(data_movies.results);
@@ -70,10 +71,10 @@ export default function Home() {
     setTimeout(() => {
       setMainCard(topMoviesTvs[counter]);
       counter < topMoviesTvs.length ? setCounter(counter + 1) : setCounter(0);
-    }, 6000);
+    }, 10000);
   });
   // console.log(counter);
-  console.log(tv);
+  // console.log(tv);
   // console.log(mainCard);
   return (
     <div className="trendingApp">
@@ -97,24 +98,26 @@ export default function Home() {
         }
       />
 
-      <h2>Popular movies</h2>
+      <h2>Trending movies</h2>
       <div className="trendingMovies">
         {movies.map((movie) => (
           <MovieCard
             title={movie.title}
             vote_average={movie.vote_average}
             release_date={movie.release_date}
+            movie_id={movie.id}
             poster={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
           />
         ))}
       </div>
-      <h2>Popular Tv shows</h2>
+      <h2>Trending Tv shows</h2>
       <div className="trendingTvs">
         {tv.map((tv) => (
-          <TvCard
-            title={tv.title}
+          <MovieCard
+            title={tv.name}
             vote_average={tv.vote_average}
-            first_air_date={tv.first_air_date}
+            release_date={tv.first_air_date}
+            movie_id={tv.id}
             poster={`https://image.tmdb.org/t/p/w300/${tv.poster_path} `}
           />
         ))}

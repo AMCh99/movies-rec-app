@@ -29,7 +29,8 @@
   box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527;
 }
 .titleDesc {
-  font-size: 2rem;
+  font-size: 1.5rem;
+  /* margin-top: auto; */
   color: white;
   text-shadow: 2px 2px black;
 }
@@ -39,12 +40,13 @@
   margin: 2rem;
   text-align: end;
   float: right;
+  /* background-color: aqua; */
+  margin-top: auto;
 }
 .movieTvDesc .titleCard {
   font-size: 3rem;
-  color: white;
+  color: whitesmoke;
   text-shadow: 2px 2px black;
   margin-bottom: 2rem;
   bottom: 0;
-  /* background-color: aqua; */
 }

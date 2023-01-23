@@ -10,5 +10,90 @@
 .trendingMovies,
 .trendingTvs {
   display: flex;
-  gap: 10px;
+  gap: 15px;
+  overflow: auto;
+  scroll-snap-type: x mandatory;
+}
+.trendingMovies .movieCard,
+.trendingTvs .movieCard {
+  scroll-snap-align: center;
+}
+
+.movieCard {
+  background-color: rgb(46, 51, 51);
+  color: white;
+  text-align: end;
+  border-radius: 5px;
+  /* -webkit-box-shadow: 2px 2px 3px #1c1d1f, -2px -2px 3px #222527; */
+  box-shadow: 4px 4px 6px #1c1d1f;
+  width: min-content;
+  margin-bottom: 3rem;
+}
+.movieCard img {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  width: 300px;
+  height: 450px;
+  object-fit: cover;
+}
+
+.titleCard {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.movieCard p {
+  margin-right: 5px;
+}
+
+h2 {
+  margin-top: 5vh;
+  margin-bottom: 1vh;
+}
+.searchResults {
+  /* background-color: aqua; */
+  display: grid;
+  grid-template-columns: repeat(5, 22rem);
+  justify-content: center;
+  justify-items: center;
+  width: min-content;
+  margin: auto;
+}
+
+.searchSection {
+  display: flex;
+}
+
+form {
+  /* background-color: aquamarine; */
+  margin: auto;
+  text-align: center;
+  width: 90%;
+}
+
+form input,
+form input:focus {
+  height: 2rem;
+  width: 90%;
+  max-width: 600px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(46, 51, 51);
+  color: aliceblue;
+  padding: 2px;
+  box-shadow: 4px 4px 6px #1c1d1f;
+  margin-bottom: 2rem;
+}
+
+::placeholder {
+  color: aliceblue;
+}
+
+form button {
+  border: none;
+  background-color: rgb(46, 51, 51);
+  border-radius: 5px;
+  height: 2rem;
+  width: 2rem;
+  margin-left: 1rem;
+  box-shadow: 4px 4px 6px #1c1d1f;
 }

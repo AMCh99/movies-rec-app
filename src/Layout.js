@@ -18,7 +18,7 @@ export default function Layout() {
           </li>
           <li>
             <Link to="/MyList">
-              <p className="navP">MyList</p>
+              <p className="navP">My List</p>
             </Link>
           </li>
         </ul>
