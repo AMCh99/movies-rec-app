@@ -2,6 +2,10 @@ import MovieCard from "./MovieCard";
 import { useState } from "react";
 const API_KEY = "f402a4b12e741e93d7e20be5d6f634d6";
 const QUERY_PATTERN = `https://api.themoviedb.org/3/find/{808}?api_key=f402a4b12e741e93d7e20be5d6f634d6&language=en-US&external_source=imdb_id`;
+//Use this instead of FIND BY ID https://developers.themoviedb.org/3/movies/get-movie-details
+//EXAMPLE QUERY https://api.themoviedb.org/3/find/{external_id}?api_key=<<api_key>>&language=en-US&external_source=imdb_id
+//EXAMPLE WORKING QUERY https://api.themoviedb.org/3/movie/12?api_key=f402a4b12e741e93d7e20be5d6f634d6&language=en-US
+//Maybe u can even use this in movie card, but maybe
 
 export default function MyList() {
   const [queries, setGueries] = useState([]);
