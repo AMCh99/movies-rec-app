@@ -4,6 +4,10 @@ const API_KEY = "f402a4b12e741e93d7e20be5d6f634d6";
 const QUERY_PATTERN = `https://api.themoviedb.org/3/find/{808}?api_key=f402a4b12e741e93d7e20be5d6f634d6&language=en-US&external_source=imdb_id`;
 const EX_QUERY =
   "https://api.themoviedb.org/3/movie/12?api_key=f402a4b12e741e93d7e20be5d6f634d6&language=en-US";
+//Use this instead of FIND BY ID https://developers.themoviedb.org/3/movies/get-movie-details
+//EXAMPLE QUERY https://api.themoviedb.org/3/find/{external_id}?api_key=<<api_key>>&language=en-US&external_source=imdb_id
+//EXAMPLE WORKING QUERY https://api.themoviedb.org/3/movie/12?api_key=f402a4b12e741e93d7e20be5d6f634d6&language=en-US
+//Maybe u can even use this in movie card, but maybe
 
 export default function MyList() {
   const [isLoading, setLoading] = useState(true);
@@ -61,6 +65,17 @@ export default function MyList() {
 
   // console.log(arrayToSearch);
   // console.log(searchResult);
+
+  let chars = searchResult;
+
+  let uniqueChars = [];
+  chars.forEach((element) => {
+    if (!uniqueChars.includes(element)) {
+      uniqueChars.push(element);
+    }
+  });
+
+  console.log(uniqueChars);
 
   if (isLoading) {
     return <p>Loading</p>;

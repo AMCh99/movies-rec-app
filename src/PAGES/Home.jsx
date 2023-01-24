@@ -6,6 +6,8 @@ import MainCardHome from "./MainCardHome";
 import "C:/Users/alek1/OneDrive/Documents/Programming/react/moviesRecomendationsApp/movies-rec-app/src/CSS/Home.css";
 import MovieTvDesc from "./MovieTvDesc";
 
+//https://codesandbox.io/s/stoic-hofstadter-ws3s2l?file=/src/App.js
+
 const API_KEY = "f402a4b12e741e93d7e20be5d6f634d6";
 const API_CODE =
   "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmNDAyYTRiMTJlNzQxZTkzZDdlMjBiZTVkNmY2MzRkNiIsInN1YiI6IjYzY2M2OTU5Y2VlNDgxMDBkZWU4OWU0OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6zgSiWjnA_2frOOKjORgzgAHs3tbYQfd9zGi_rhct5Y";
