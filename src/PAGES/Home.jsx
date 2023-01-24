@@ -19,11 +19,13 @@ const TV_TRENDING_WEEK_QUERYY =
 // const topMoviesTvs = movies;
 
 export default function Home() {
+  const [isLoading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
   const [tv, setTv] = useState([]);
-  const top5m = movies.slice(0, 5);
-  const top5t = tv.slice(0, 5);
-  const topMoviesTvs = top5m.concat(top5t);
+  const [topMoviesTvs, setTopMoviesTvs] = useState("");
+  const [mainCard, setMainCard] = useState(topMoviesTvs[0]);
+  const [counter, setCounter] = useState(0);
+
   // console.log(topMoviesTvs);
   const mov0 = {
     adult: false,
@@ -43,8 +45,6 @@ export default function Home() {
     vote_average: 7.713,
     vote_count: 4446,
   };
-  const [mainCard, setMainCard] = useState(topMoviesTvs[0]);
-  const [counter, setCounter] = useState(1);
 
   const trending = async () => {
     const response_movies = await fetch(`${MOVIES_TRENDING_WEEK_QUERYY}`);
@@ -57,8 +57,16 @@ export default function Home() {
       i.title = i.name;
     });
 
+    const top5m = data_movies.results.slice(0, 5);
+    const top5t = data_tv.results.slice(0, 5);
+    const topMoviesTvs = top5m.concat(top5t);
+
     setMovies(data_movies.results);
     setTv(data_tv.results);
+    setTopMoviesTvs(topMoviesTvs);
+    // setMainCard(topMoviesTvs[0]);
+    // console.log(mainCard);
+    // setLoading(false);
   };
   // const topMoviesTvs = movies;
 
@@ -67,35 +75,42 @@ export default function Home() {
     trending();
   }, []);
 
+  // const tts = topMoviesTvs;
   useEffect(() => {
     setTimeout(() => {
       setMainCard(topMoviesTvs[counter]);
       counter < topMoviesTvs.length ? setCounter(counter + 1) : setCounter(0);
     }, 10000);
   });
+  // const xddd = topMoviesTvs;
+  // let c = 0;
+  // const timer = setInterval(() => {
+  //   setMainCard(xddd[c]);
+  //   // console.log(counter);
+
+  //   c < xddd.length ? (c += 1) : (c = 0);
+  // }, 10000);
+
   // console.log(counter);
   // console.log(tv);
   // console.log(mainCard);
+
+  if (isLoading && mainCard === undefined) {
+    return <h1>Loading</h1>;
+  }
+
   return (
     <div className="trendingApp">
       {/* <MainCardHome title={mainCard ? mainCard.title : mov0.title} /> */}
       {/* <button onClick={() => trending()}>REFRESH</button> */}
 
       <MovieTvDesc
-        title={mainCard ? mainCard.title : mov0.title}
-        vote_average={mainCard ? mainCard.vote_average : mov0.vote_average}
-        release_date={mainCard ? mainCard.release_date : mov0.release_date}
-        overview={mainCard ? mainCard.overview : mov0.overview}
-        backdrop_path={
-          mainCard
-            ? `https://image.tmdb.org/t/p/original/${mainCard.backdrop_path}`
-            : `https://image.tmdb.org/t/p/original/${mov0.backdrop_path}`
-        }
-        poster={
-          mainCard
-            ? `https://image.tmdb.org/t/p/w500/${mainCard.poster_path}`
-            : `https://image.tmdb.org/t/p/w500/${mov0.poster_path}`
-        }
+        title={mainCard.title}
+        vote_average={mainCard.vote_average}
+        release_date={mainCard.release_date}
+        overview={mainCard.overview}
+        backdrop_path={`https://image.tmdb.org/t/p/original/${mainCard.backdrop_path}`}
+        poster={`https://image.tmdb.org/t/p/w500/${mainCard.poster_path}`}
       />
 
       <h2>Trending movies</h2>
@@ -105,6 +120,7 @@ export default function Home() {
             title={movie.title}
             vote_average={movie.vote_average}
             release_date={movie.release_date}
+            media_type={movie.media_type}
             movie_id={movie.id}
             poster={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
           />
@@ -118,6 +134,7 @@ export default function Home() {
             vote_average={tv.vote_average}
             release_date={tv.first_air_date}
             movie_id={tv.id}
+            media_type={tv.media_type}
             poster={`https://image.tmdb.org/t/p/w300/${tv.poster_path} `}
           />
         ))}

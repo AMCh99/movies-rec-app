@@ -5,7 +5,12 @@ export default function MovieCard(props) {
 
   //   const POSTER = `https://image.tmdb.org/t/p/w400/${poster_link}`;
 
-  function AddToFav(movie_id) {
+  //Use this instead of FIND BY ID https://developers.themoviedb.org/3/movies/get-movie-details
+  const QUERY = `https://api.themoviedb.org/3/find/{external_id}?api_key=<<api_key>>&language=en-US&external_source=imdb_id`;
+  //EXAMPLE WORKING QUERY https://api.themoviedb.org/3/movie/12?api_key=f402a4b12e741e93d7e20be5d6f634d6&language=en-US
+  //Maybe u can even use this in movie card, but maybe
+
+  function AddToFav([movie_id, media_type]) {
     // const fav_movies_length = window.localStorage.getItem(favMovies);
     // window.localStorage.setItem("favMovies", movie_id);
 
@@ -18,11 +23,11 @@ export default function MovieCard(props) {
       let baza_string = JSON.parse(window.localStorage.getItem("favMovies"));
       // console.log(baza_string);
       const updateBaza = baza_string["mov"];
-      if (updateBaza.includes(movie_id)) {
-        const index = updateBaza.indexOf(movie_id);
+      if (updateBaza.includes([movie_id, media_type])) {
+        const index = updateBaza.indexOf([movie_id, media_type]);
         const updateBaza2 = updateBaza.splice(index, 1);
       } else {
-        const updateBaza2 = updateBaza.push(movie_id);
+        const updateBaza2 = updateBaza.push([movie_id, media_type]);
       }
 
       // console.log(updateBaza);
@@ -36,7 +41,7 @@ export default function MovieCard(props) {
       // const moviesObj = { mov: [movie_id] };
       window.localStorage.setItem(
         "favMovies",
-        JSON.stringify({ mov: [movie_id] })
+        JSON.stringify({ mov: [[movie_id, media_type]] })
       );
       // console.log("robie baze");
     }
@@ -49,7 +54,10 @@ export default function MovieCard(props) {
     <div className="movieCard">
       <img src={props.poster} alt={props.title} />
       <p className="titleCard">{props.title}</p>
-      <button type="button" onClick={() => AddToFav(props.movie_id)}>
+      <button
+        type="button"
+        onClick={() => AddToFav([props.movie_id, props.media_type])}
+      >
         &#10084;
       </button>
       {props.vote_average ? <p>{props.vote_average.toFixed(1)}</p> : <p>N/A</p>}

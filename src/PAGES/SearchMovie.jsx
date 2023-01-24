@@ -16,6 +16,7 @@ export default function SearchMovie() {
 
   const SearchingFunction = async () => {
     const QUERY = START_QUERY + search;
+    console.log(QUERY);
     const response_search = await fetch(`${QUERY}`);
     const data_search = await response_search.json();
 
@@ -57,14 +58,19 @@ export default function SearchMovie() {
       <div className="searchResults">
         {searchResult.length > 0 ? (
           searchResult.map((movie) =>
-            movie.poster_path ? (
-              <MovieCard
-                title={movie.title}
-                vote_average={movie.vote_average}
-                release_date={movie.release_date}
-                movie_id={movie.id}
-                poster={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
-              />
+            movie.media_type === "movie" || movie.media_type === "tv" ? (
+              movie.poster_path ? (
+                <MovieCard
+                  media_type={movie.media_type}
+                  title={movie.title}
+                  vote_average={movie.vote_average}
+                  release_date={movie.release_date}
+                  movie_id={movie.id}
+                  poster={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+                />
+              ) : (
+                " "
+              )
             ) : (
               " "
             )

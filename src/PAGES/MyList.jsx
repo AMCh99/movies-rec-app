@@ -1,46 +1,105 @@
 import MovieCard from "./MovieCard";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 const API_KEY = "f402a4b12e741e93d7e20be5d6f634d6";
 const QUERY_PATTERN = `https://api.themoviedb.org/3/find/{808}?api_key=f402a4b12e741e93d7e20be5d6f634d6&language=en-US&external_source=imdb_id`;
+const EX_QUERY =
+  "https://api.themoviedb.org/3/movie/12?api_key=f402a4b12e741e93d7e20be5d6f634d6&language=en-US";
 
 export default function MyList() {
-  const [queries, setGueries] = useState([]);
-  const [searchResult, setSearchResult] = useState("");
+  const [isLoading, setLoading] = useState(true);
+  const [isSearching, setIsSearching] = useState(false);
 
-  const SearchingFunction = async () => {
-    const QUERY = QUERY_PATTERN;
-    const response_search = await fetch(`${QUERY}`);
-    const data_search = await response_search.json();
+  // const [arrayToSearch, setArrayToSearch] = useState([]);
+  const [searchResult, setSearchResult] = useState([]);
 
-    data_search.results.map((i) => {
-      i.release_date = i.first_air_date;
-      i.title = i.name;
-    });
+  const FindFavMovTv = async (query) => {
+    const response_movies = await fetch(query);
+    const data_movies = await response_movies.json();
 
-    data_search.results.map((i) => {
-      i.title ? (i.title = i.title) : (i.title = i.original_title);
-    });
+    // data_movies.results.map((i) => {
+    //   i.release_date = i.first_air_date;
+    //   i.title = i.name;
+    // });
+    // setLoading(true);
+    if (searchResult && !isSearching) {
+      // const xxdddd = searchResult;
 
-    setSearchResult(data_search.results);
-    console.log(searchResult);
+      // console.log(xxdddd.includes(data_movies));
+      searchResult.push(data_movies);
+      // console.log(xxdddd);
+      // console.log(data_movies);
+      setSearchResult(searchResult);
+      // console.log(searchResult);
+      setLoading(false);
+      // console.log(xxdddd.includes(data_movies));
+    }
   };
 
-  if (window.localStorage.getItem("favMovies")) {
-    const favMoviesString = JSON.parse(
-      window.localStorage.getItem("favMovies")
-    );
-    const favMoviesArray = favMoviesString["mov"];
-    return (
-      <>
-        <p>
-          {favMoviesArray.map((m) => {
-            return <p>{m}</p>;
-          })}
-        </p>
-        {/* <button onClick={() => SearchingFunction()}>asdasd</button> */}
-      </>
-    );
+  useEffect(() => {
+    if (window.localStorage.getItem("favMovies")) {
+      let baza_string = JSON.parse(window.localStorage.getItem("favMovies"));
+      const updateBaza = baza_string["mov"];
+      // console.log(updateBaza);
+      // setArrayToSearch(updateBaza);
+      // console.log(arrayToSearch);
+      // console.log("ok");
+      updateBaza.forEach((element) => {
+        FindFavMovTv(
+          `https://api.themoviedb.org/3/${element[1]}/${element[0]}?api_key=f402a4b12e741e93d7e20be5d6f634d6&language=en-US`
+        );
+      });
+
+      // console.log(searchResult);
+    }
+  });
+
+  // useEffect(() => {
+  //   FindFavMovTv(
+  //     `https://api.themoviedb.org/3/movie/12?api_key=f402a4b12e741e93d7e20be5d6f634d6&language=en-US`
+  //   );
+  // }, []);
+
+  // console.log(arrayToSearch);
+  // console.log(searchResult);
+
+  if (isLoading) {
+    return <p>Loading</p>;
   } else {
-    <h2>You do not have any favourite movies.</h2>;
+    return (
+      <div className="searchResults">
+        {searchResult.length > 0 ? (
+          searchResult.map((movie) =>
+            movie.belongs_to_collection.poster_path ? (
+              <MovieCard
+                media_type={movie.title}
+                title={movie.title}
+                vote_average={movie.vote_average}
+                release_date={movie.release_date}
+                movie_id={movie.id}
+                poster={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+              />
+            ) : (
+              " "
+            )
+          )
+        ) : (
+          <h2>No movies found</h2>
+        )}
+
+        {/* {searchResult.map((movie) => (
+          <MovieCard
+            title={movie.title}
+            vote_average={movie.vote_average}
+            release_date={movie.release_date}
+            poster={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+          />
+        ))} */}
+      </div>
+      // <div>
+      //   {searchResult.map((sr) => (
+      //     <p>{sr.belongs_to_collection.name}</p>
+      //   ))}
+      // </div>
+    );
   }
 }
