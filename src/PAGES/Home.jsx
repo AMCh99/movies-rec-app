@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import MovieCard from "./MovieCard";
-import TvCard from "./TvCard";
-import MainCardHome from "./MainCardHome";
 import "C:/Users/alek1/OneDrive/Documents/Programming/react/moviesRecomendationsApp/movies-rec-app/src/CSS/Home.css";
 import MovieTvDesc from "./MovieTvDesc";
 
@@ -18,8 +16,6 @@ const MOVIES_TRENDING_WEEK_QUERYY =
 const TV_TRENDING_WEEK_QUERYY =
   "https://api.themoviedb.org/3/trending/tv/week?api_key=f402a4b12e741e93d7e20be5d6f634d6";
 
-// const topMoviesTvs = movies;
-
 export default function Home() {
   const [isLoading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
@@ -27,26 +23,6 @@ export default function Home() {
   const [topMoviesTvs, setTopMoviesTvs] = useState("");
   const [mainCard, setMainCard] = useState(topMoviesTvs[0]);
   const [counter, setCounter] = useState(0);
-
-  // console.log(topMoviesTvs);
-  const mov0 = {
-    adult: false,
-    backdrop_path: "/s16H6tpK2utvwDtzZ8Qy4qm5Emw.jpg",
-    id: 76600,
-    title: "Avatar: The Way of Water",
-    original_language: "en",
-    original_title: "Avatar: The Way of Water",
-    overview:
-      "Set more than a decade after the events of the first film, learn the story of the Sully family (Jake, Neytiri, and their kids), the trouble that follows them, the lengths they go to keep each other safe, the battles they fight to stay alive, and the tragedies they endure.",
-    poster_path: "/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg",
-    media_type: "movie",
-    genre_ids: [878, 12, 28],
-    popularity: 2903.334,
-    release_date: "2022-12-14",
-    video: false,
-    vote_average: 7.713,
-    vote_count: 4446,
-  };
 
   const trending = async () => {
     const response_movies = await fetch(`${MOVIES_TRENDING_WEEK_QUERYY}`);
@@ -66,7 +42,7 @@ export default function Home() {
     setMovies(data_movies.results);
     setTv(data_tv.results);
     setTopMoviesTvs(topMoviesTvs);
-    // setMainCard(topMoviesTvs[0]);
+    setMainCard(topMoviesTvs[0]);
     // console.log(mainCard);
     // setLoading(false);
   };

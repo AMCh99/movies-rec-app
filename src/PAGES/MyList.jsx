@@ -1,42 +1,85 @@
 import MovieCard from "./MovieCard";
+import MovieTvDesc from "./MovieTvDesc";
+import AddToFav from "./MovieCard";
+import "C:/Users/alek1/OneDrive/Documents/Programming/react/moviesRecomendationsApp/movies-rec-app/src/CSS/MyList.css";
 import { useState, useEffect } from "react";
 const API_KEY = "f402a4b12e741e93d7e20be5d6f634d6";
 const QUERY_PATTERN = `https://api.themoviedb.org/3/find/{808}?api_key=f402a4b12e741e93d7e20be5d6f634d6&language=en-US&external_source=imdb_id`;
 const EX_QUERY =
   "https://api.themoviedb.org/3/movie/12?api_key=f402a4b12e741e93d7e20be5d6f634d6&language=en-US";
-//Use this instead of FIND BY ID https://developers.themoviedb.org/3/movies/get-movie-details
-//EXAMPLE QUERY https://api.themoviedb.org/3/find/{external_id}?api_key=<<api_key>>&language=en-US&external_source=imdb_id
-//EXAMPLE WORKING QUERY https://api.themoviedb.org/3/movie/12?api_key=f402a4b12e741e93d7e20be5d6f634d6&language=en-US
-//Maybe u can even use this in movie card, but maybe
 
 export default function MyList() {
-  const [isLoading, setLoading] = useState(true);
-  const [isSearching, setIsSearching] = useState(false);
+  function itemInMyList(title, media_type, movie_id, id) {
+    return (
+      <li>
+        <button
+          onClick={() => ShowDetails([movie_id, media_type, title, id])}
+          id="heart-button"
+        >
+          {title}
+        </button>
+        <button
+          className="delete-from-mylist"
+          onClick={() => {
+            let baza_string = JSON.parse(
+              window.localStorage.getItem("favMovies")
+            );
+            var updateBaza = baza_string["mov"];
+            const index = id;
+            updateBaza.splice(index, 1);
+            console.log("ZAWIERA");
+            console.log(updateBaza);
+            // console.log(updateBaza2);
+            window.localStorage.removeItem("favMovies");
+            window.localStorage.setItem(
+              "favMovies",
+              JSON.stringify({ mov: updateBaza })
+            );
 
-  // const [arrayToSearch, setArrayToSearch] = useState([]);
+            setLoading(true);
+          }}
+        >
+          {/* <span id="heart-button">&#9829;</span> */}
+          Del form MyList
+        </button>
+      </li>
+    );
+  }
+
+  function ShowDetails(element) {
+    if (element) {
+      const query = `https://api.themoviedb.org/3/${element[1]}/${element[0]}?api_key=f402a4b12e741e93d7e20be5d6f634d6&language=en-US`;
+      console.log(element);
+      FindFavMovTv(query);
+    }
+
+    return "none";
+  }
+
+  const [isLoading, setLoading] = useState(true);
+  const [currDetails, setCurrDetails] = useState("");
+
+  const [arrayToSearch, setArrayToSearch] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
 
   const FindFavMovTv = async (query) => {
     const response_movies = await fetch(query);
     const data_movies = await response_movies.json();
 
-    // data_movies.results.map((i) => {
+    // data_movies.map((i) => {
     //   i.release_date = i.first_air_date;
     //   i.title = i.name;
     // });
-    // setLoading(true);
-    if (searchResult && !isSearching) {
-      // const xxdddd = searchResult;
 
-      // console.log(xxdddd.includes(data_movies));
+    if (searchResult) {
       searchResult.push(data_movies);
-      // console.log(xxdddd);
-      // console.log(data_movies);
+
       setSearchResult(searchResult);
-      // console.log(searchResult);
+
       setLoading(false);
-      // console.log(xxdddd.includes(data_movies));
     }
+    console.log(data_movies);
+    setCurrDetails(data_movies);
   };
 
   useEffect(() => {
@@ -44,77 +87,50 @@ export default function MyList() {
       let baza_string = JSON.parse(window.localStorage.getItem("favMovies"));
       const updateBaza = baza_string["mov"];
       // console.log(updateBaza);
-      // setArrayToSearch(updateBaza);
-      // console.log(arrayToSearch);
-      // console.log("ok");
-      updateBaza.forEach((element) => {
-        FindFavMovTv(
-          `https://api.themoviedb.org/3/${element[1]}/${element[0]}?api_key=f402a4b12e741e93d7e20be5d6f634d6&language=en-US`
-        );
-      });
-
-      // console.log(searchResult);
+      if (updateBaza.length > 0) {
+        setArrayToSearch(updateBaza);
+        setLoading(false);
+      }
     }
-  });
-
-  // useEffect(() => {
-  //   FindFavMovTv(
-  //     `https://api.themoviedb.org/3/movie/12?api_key=f402a4b12e741e93d7e20be5d6f634d6&language=en-US`
-  //   );
-  // }, []);
-
-  // console.log(arrayToSearch);
-  // console.log(searchResult);
-
-  let chars = searchResult;
-
-  let uniqueChars = [];
-  chars.forEach((element) => {
-    if (!uniqueChars.includes(element)) {
-      uniqueChars.push(element);
-    }
-  });
-
-  console.log(uniqueChars);
+  }, [arrayToSearch]);
 
   if (isLoading) {
-    return <p>Loading</p>;
-  } else {
     return (
-      <div className="searchResults">
-        {searchResult.length > 0 ? (
-          searchResult.map((movie) =>
-            movie.belongs_to_collection.poster_path ? (
-              <MovieCard
-                media_type={movie.title}
-                title={movie.title}
-                vote_average={movie.vote_average}
-                release_date={movie.release_date}
-                movie_id={movie.id}
-                poster={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
-              />
-            ) : (
-              " "
-            )
-          )
-        ) : (
-          <h2>No movies found</h2>
-        )}
-
-        {/* {searchResult.map((movie) => (
-          <MovieCard
-            title={movie.title}
-            vote_average={movie.vote_average}
-            release_date={movie.release_date}
-            poster={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
-          />
-        ))} */}
-      </div>
-      // <div>
-      //   {searchResult.map((sr) => (
-      //     <p>{sr.belongs_to_collection.name}</p>
-      //   ))}
-      // </div>
+      <h1>
+        There are no movies or tvs here, click read heart button to ad some.
+      </h1>
     );
   }
+  // console.log(arrayToSearch);
+  if (arrayToSearch.length === 0) {
+    return (
+      <h1>
+        There are no movies or tvs here, click read heart button to ad some.
+      </h1>
+    );
+  }
+
+  return (
+    <div className="list-fav-movies-tvs">
+      {/* {currDetails.title} */}
+      {currDetails ? (
+        <MovieTvDesc
+          title={currDetails.title}
+          vote_average={currDetails.vote_average}
+          release_date={currDetails.release_date}
+          overview={currDetails.overview}
+          backdrop_path={`https://image.tmdb.org/t/p/original/${currDetails.backdrop_path}`}
+          poster={`https://image.tmdb.org/t/p/w500/${currDetails.poster_path}`}
+        />
+      ) : (
+        " "
+      )}
+      <div className="details"></div>
+      <ul>
+        {arrayToSearch.map((item) => {
+          return itemInMyList(item[2], item[1], item[0]);
+        })}
+      </ul>
+    </div>
+  );
 }

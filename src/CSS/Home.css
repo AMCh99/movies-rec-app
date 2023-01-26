@@ -37,12 +37,41 @@
   object-fit: cover;
 }
 
+.movieCard p {
+  margin-right: 5px;
+  text-align: end;
+  display: flex;
+  /* background-color: aqua; */
+
+  justify-content: center;
+  align-items: center;
+}
+
+.date-rating {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 5px;
+}
+.date-rating span {
+  color: gold;
+}
+
 .titleCard {
   font-size: 1.2rem;
   font-weight: 500;
+  /* background-color: aqua; */
+  height: 3vmax;
 }
-.movieCard p {
-  margin-right: 5px;
+.movieCard button {
+  background: none;
+  color: red;
+  border: none;
+}
+
+#heart-button {
+  /* background: red; */
+  font-size: 2vmax;
 }
 
 h2 {
@@ -96,4 +125,18 @@ form button {
   width: 2rem;
   margin-left: 1rem;
   box-shadow: 4px 4px 6px #1c1d1f;
+}
+
+@media only screen and (max-width: 768px) {
+  .titleDesc {
+    font-size: 10px;
+  }
+  .desc {
+    top: 2rem;
+    left: 2rem;
+  }
+  .desc img {
+    width: 75%;
+    height: 75%;
+  }
 }

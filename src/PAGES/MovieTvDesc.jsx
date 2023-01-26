@@ -10,7 +10,11 @@ export default function MovieTvDesc(props) {
           <p className="titleCard">{props.title}</p>
           <p className="description">{props.overview}</p>
           <p>&#9733; {props.vote_average.toFixed(1)}</p>
-          <p>{props.release_date.toString().slice(0, 4)}</p>
+          <p>
+            {props.release_date
+              ? props.release_date.toString().slice(0, 4)
+              : " "}
+          </p>
         </div>
       </div>
     </div>

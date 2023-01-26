@@ -1,14 +1,9 @@
 import { useState } from "react";
 import MovieCard from "./MovieCard";
 const API_KEY = "f402a4b12e741e93d7e20be5d6f634d6";
-const EXAMPLE_QUERY =
-  "https://api.themoviedb.org/3/search/multi?api_key=f402a4b12e741e93d7e20be5d6f634d6&language=en-US&page=1&include_adult=false&query=Shrek";
+
 const START_QUERY =
   "https://api.themoviedb.org/3/search/multi?api_key=f402a4b12e741e93d7e20be5d6f634d6&language=en-US&page=1&include_adult=false&query=";
-
-// const handleClick = () => {
-//   setSearch();
-// };
 
 export default function SearchMovie() {
   const [search, setSearch] = useState("");
@@ -78,15 +73,6 @@ export default function SearchMovie() {
         ) : (
           <h2>No movies found</h2>
         )}
-
-        {/* {searchResult.map((movie) => (
-          <MovieCard
-            title={movie.title}
-            vote_average={movie.vote_average}
-            release_date={movie.release_date}
-            poster={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
-          />
-        ))} */}
       </div>
     </div>
   );

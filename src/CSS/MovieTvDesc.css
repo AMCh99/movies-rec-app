@@ -8,7 +8,7 @@
   top: 0;
   left: 0;
   object-fit: cover;
-  height: 45rem;
+  height: 35vmax;
   -webkit-box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527;
   box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527;
   filter: grayscale(60%);
@@ -18,18 +18,24 @@
   display: flex;
   position: absolute;
   /* border: 5px green solid; */
-  width: 90%;
-  top: 7rem;
-  left: 5rem;
+  width: 90vw;
+  top: 6.5rem;
+  left: 4.5vmax;
+  height: 30vmax;
 }
 
 .desc img {
-  width: 25rem;
   -webkit-box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527;
   box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527;
 }
 .titleDesc {
-  font-size: 1.5rem;
+  font-size: 1.5vmax;
+  /* margin-top: auto; */
+  color: white;
+  text-shadow: 2px 2px black;
+}
+.titleDesc {
+  font-size: 1.5vmax;
   /* margin-top: auto; */
   color: white;
   text-shadow: 2px 2px black;
@@ -37,16 +43,17 @@
 
 .titleDesc {
   display: inline-flexbox;
-  margin: 2rem;
+  margin: 2vmax;
   text-align: end;
   float: right;
   /* background-color: aqua; */
   margin-top: auto;
 }
+
 .movieTvDesc .titleCard {
-  font-size: 3rem;
+  font-size: 3vmax;
   color: whitesmoke;
   text-shadow: 2px 2px black;
-  margin-bottom: 2rem;
+  margin-bottom: 2vmax;
   bottom: 0;
 }
