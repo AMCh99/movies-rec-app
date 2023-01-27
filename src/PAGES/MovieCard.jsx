@@ -7,8 +7,7 @@ export default function MovieCard(props) {
 
   //Use this instead of FIND BY ID https://developers.themoviedb.org/3/movies/get-movie-details
   const QUERY = `https://api.themoviedb.org/3/find/{external_id}?api_key=<<api_key>>&language=en-US&external_source=imdb_id`;
-  //EXAMPLE WORKING QUERY https://api.themoviedb.org/3/movie/12?api_key=f402a4b12e741e93d7e20be5d6f634d6&language=en-US
-  //Maybe u can even use this in movie card, but maybe
+
 
   function AddToFav([movie_id, media_type, title, id]) {
     // const fav_movies_length = window.localStorage.getItem(favMovies);
