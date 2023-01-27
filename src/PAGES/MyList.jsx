@@ -3,10 +3,7 @@ import MovieTvDesc from "./MovieTvDesc";
 import AddToFav from "./MovieCard";
 import "C:/Users/alek1/OneDrive/Documents/Programming/react/moviesRecomendationsApp/movies-rec-app/src/CSS/MyList.css";
 import { useState, useEffect } from "react";
-const API_KEY = "f402a4b12e741e93d7e20be5d6f634d6";
-const QUERY_PATTERN = `https://api.themoviedb.org/3/find/{808}?api_key=f402a4b12e741e93d7e20be5d6f634d6&language=en-US&external_source=imdb_id`;
-const EX_QUERY =
-  "https://api.themoviedb.org/3/movie/12?api_key=f402a4b12e741e93d7e20be5d6f634d6&language=en-US";
+const API_KEY = "XD";
 
 export default function MyList() {
   function itemInMyList(title, media_type, movie_id, id) {
@@ -48,7 +45,7 @@ export default function MyList() {
 
   function ShowDetails(element) {
     if (element) {
-      const query = `https://api.themoviedb.org/3/${element[1]}/${element[0]}?api_key=f402a4b12e741e93d7e20be5d6f634d6&language=en-US`;
+      const query = `https://api.themoviedb.org/3/${element[1]}/${element[0]}?api_key=${API_KEY}&language=en-US`;
       console.log(element);
       FindFavMovTv(query);
     }

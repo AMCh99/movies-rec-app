@@ -6,15 +6,11 @@ import MovieTvDesc from "./MovieTvDesc";
 
 //https://codesandbox.io/s/stoic-hofstadter-ws3s2l?file=/src/App.js
 
-const API_KEY = "f402a4b12e741e93d7e20be5d6f634d6";
-const API_CODE =
-  "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmNDAyYTRiMTJlNzQxZTkzZDdlMjBiZTVkNmY2MzRkNiIsInN1YiI6IjYzY2M2OTU5Y2VlNDgxMDBkZWU4OWU0OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6zgSiWjnA_2frOOKjORgzgAHs3tbYQfd9zGi_rhct5Y";
+const API_KEY = "XD";
 
-const MOVIES_TRENDING_WEEK_QUERYY =
-  "https://api.themoviedb.org/3/trending/movie/week?api_key=f402a4b12e741e93d7e20be5d6f634d6";
+const MOVIES_TRENDING_WEEK_QUERYY = `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`;
 
-const TV_TRENDING_WEEK_QUERYY =
-  "https://api.themoviedb.org/3/trending/tv/week?api_key=f402a4b12e741e93d7e20be5d6f634d6";
+const TV_TRENDING_WEEK_QUERYY = `https://api.themoviedb.org/3/trending/tv/week?api_key=${API_KEY}`;
 
 export default function Home() {
   const [isLoading, setLoading] = useState(true);

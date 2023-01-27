@@ -1,9 +1,8 @@
 import { useState } from "react";
 import MovieCard from "./MovieCard";
-const API_KEY = "f402a4b12e741e93d7e20be5d6f634d6";
+const API_KEY = "XD";
 
-const START_QUERY =
-  "https://api.themoviedb.org/3/search/multi?api_key=f402a4b12e741e93d7e20be5d6f634d6&language=en-US&page=1&include_adult=false&query=";
+const START_QUERY = `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&language=en-US&page=1&include_adult=false&query=`;
 
 export default function SearchMovie() {
   const [search, setSearch] = useState("");
