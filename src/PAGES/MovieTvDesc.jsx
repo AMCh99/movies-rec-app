@@ -1,4 +1,4 @@
-import "C:/Users/alek1/OneDrive/Documents/Programming/react/moviesRecomendationsApp/movies-rec-app/src/CSS/MovieTvDesc.css";
+import "../CSS/MovieTvDesc.css";
 
 export default function MovieTvDesc(props) {
   return (

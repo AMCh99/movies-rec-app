@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import MovieCard from "./MovieCard";
-import "C:/Users/alek1/OneDrive/Documents/Programming/react/moviesRecomendationsApp/movies-rec-app/src/CSS/Home.css";
+import "../CSS/Home.css";
 import MovieTvDesc from "./MovieTvDesc";
 
-//https://codesandbox.io/s/stoic-hofstadter-ws3s2l?file=/src/App.js
-
-const API_KEY = "XD";
+const API_KEY = "f402a4b12e741e93d7e20be5d6f634d6";
 
 const MOVIES_TRENDING_WEEK_QUERYY = `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`;
 
@@ -39,35 +37,17 @@ export default function Home() {
     setTv(data_tv.results);
     setTopMoviesTvs(topMoviesTvs);
     setMainCard(topMoviesTvs[0]);
-    // console.log(mainCard);
-    // setLoading(false);
   };
-  // const topMoviesTvs = movies;
-
-  // console.log(movies[1]);
   useEffect(() => {
     trending();
   }, []);
 
-  // const tts = topMoviesTvs;
   useEffect(() => {
     setTimeout(() => {
       setMainCard(topMoviesTvs[counter]);
       counter < topMoviesTvs.length ? setCounter(counter + 1) : setCounter(0);
     }, 10000);
   });
-  // const xddd = topMoviesTvs;
-  // let c = 0;
-  // const timer = setInterval(() => {
-  //   setMainCard(xddd[c]);
-  //   // console.log(counter);
-
-  //   c < xddd.length ? (c += 1) : (c = 0);
-  // }, 10000);
-
-  // console.log(counter);
-  // console.log(tv);
-  // console.log(mainCard);
 
   if (isLoading && mainCard === undefined) {
     return <h1>Loading</h1>;
@@ -75,9 +55,6 @@ export default function Home() {
 
   return (
     <div className="trendingApp">
-      {/* <MainCardHome title={mainCard ? mainCard.title : mov0.title} /> */}
-      {/* <button onClick={() => trending()}>REFRESH</button> */}
-
       <MovieTvDesc
         title={mainCard.title}
         vote_average={mainCard.vote_average}
@@ -113,8 +90,6 @@ export default function Home() {
           />
         ))}
       </div>
-      {/* <MovieCard title={movies[1].title} />
-      <img src={POSTER} /> */}
     </div>
   );
 }

@@ -1,16 +1,15 @@
 import { useState } from "react";
 import MovieCard from "./MovieCard";
-const API_KEY = "XD";
+import "../CSS/Search.css";
 
-const START_QUERY = `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&language=en-US&page=1&include_adult=false&query=`;
+const API_KEY = "f402a4b12e741e93d7e20be5d6f634d6";
 
 export default function SearchMovie() {
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState("");
 
   const SearchingFunction = async () => {
-    const QUERY = START_QUERY + search;
-    console.log(QUERY);
+    const QUERY = `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&language=en-US&page=1&include_adult=false&query=${search}`;
     const response_search = await fetch(`${QUERY}`);
     const data_search = await response_search.json();
 
@@ -23,7 +22,6 @@ export default function SearchMovie() {
       i.title ? (i.title = i.title) : (i.title = i.original_title);
     });
 
-    console.log(data_search.results);
     setSearchResult(data_search.results);
   };
 
