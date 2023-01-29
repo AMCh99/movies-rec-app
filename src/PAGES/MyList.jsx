@@ -1,7 +1,7 @@
 import MovieTvDesc from "./MovieTvDesc";
 import "../CSS/MyList.css";
 import { useState, useEffect } from "react";
-const API_KEY = "f402a4b12e741e93d7e20be5d6f634d6";
+const API_KEY = "key";
 
 export default function MyList() {
   function itemInMyList(title, media_type, movie_id, id) {

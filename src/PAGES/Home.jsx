@@ -4,7 +4,7 @@ import MovieCard from "./MovieCard";
 import "../CSS/Home.css";
 import MovieTvDesc from "./MovieTvDesc";
 
-const API_KEY = "f402a4b12e741e93d7e20be5d6f634d6";
+const API_KEY = "key";
 
 const MOVIES_TRENDING_WEEK_QUERYY = `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`;
 

@@ -2,7 +2,7 @@ import { useState } from "react";
 import MovieCard from "./MovieCard";
 import "../CSS/Search.css";
 
-const API_KEY = "f402a4b12e741e93d7e20be5d6f634d6";
+const API_KEY = "key";
 
 export default function SearchMovie() {
   const [search, setSearch] = useState("");
