@@ -1,25 +1,41 @@
 .list-fav-movies-tvs {
   margin: 1rem;
-  /* background-color: aqua; */
   margin-bottom: 2rem;
+  display: flex;
+}
+.details {
+  width: 33%;
+  margin: 1vmax;
+  background-color: rgb(46, 51, 51);
+  -webkit-box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527;
+  box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527;
+  border-radius: 5px;
+  padding: 10px;
+  margin: auto;
+  float: inline-end;
 }
 
-.list-fav-movies-tvs button {
-  /* background-color: rgb(231, 224, 215); */
-  /* background: none; */
+.list-fav-movies-tvs button,
+.butTitle {
   border: none;
-  border-bottom: 2px solid red;
-  margin-top: 1vmax;
-  margin-left: 2vmax;
-  /* border-radius: 5px; */
-  padding: 4px;
+  margin: 5px;
+  border-radius: 5px;
+  font-size: 1.8rem;
+  padding: 5px;
 }
 
 .list-fav-movies-tvs button:hover {
   cursor: pointer;
   box-shadow: 4px 4px 6px #1c1d1f;
-  background-color: rgb(46, 51, 51);
+  background-color: rgb(101, 107, 107);
   border-radius: 5px;
   color: aliceblue;
-  border-bottom: 2px solid rgb(46, 51, 51);
+}
+
+.myListDesc .desc {
+  width: 56%;
+}
+
+.myListDesc .backdrop {
+  width: 100%;
 }

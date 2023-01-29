@@ -1,7 +1,3 @@
-.movieTvDesc {
-  /* background-color: black; */
-}
-
 .backdrop {
   width: 100%;
   position: relative;
@@ -17,7 +13,7 @@
 .desc {
   display: flex;
   position: absolute;
-  /* border: 5px green solid; */
+
   width: 90vw;
   top: 6.5rem;
   left: 4.5vmax;
@@ -30,23 +26,22 @@
 }
 .titleDesc {
   font-size: 1.5vmax;
-  /* margin-top: auto; */
+
   color: white;
   text-shadow: 2px 2px black;
 }
 .titleDesc {
   font-size: 1.5vmax;
-  /* margin-top: auto; */
+
   color: white;
   text-shadow: 2px 2px black;
 }
 
 .titleDesc {
   display: inline-flexbox;
-  margin: 2vmax;
+  margin-left: 1vmax;
   text-align: end;
   float: right;
-  /* background-color: aqua; */
   margin-top: auto;
 }
 

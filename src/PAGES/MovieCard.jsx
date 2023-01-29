@@ -1,12 +1,26 @@
+import { useState } from "react";
+
 export default function MovieCard(props) {
-  function AddToFav([movie_id, media_type, title, id]) {
+  const [dubel, setDubel] = useState(-1);
+
+  function AddToFav([movie_id, media_type, title]) {
+    function czyDuplikat(updateBaza, [movie_id, media_type, title]) {
+      updateBaza.forEach((element) => {
+        if (element[0] === movie_id && element[2] === title) {
+          updateBaza.splice(updateBaza.indexOf(element), 1);
+          console.log(element);
+          setDubel(updateBaza.indexOf(element));
+        }
+        setDubel(-1);
+      });
+    }
     if (window.localStorage.getItem("favMovies")) {
       let baza_string = JSON.parse(window.localStorage.getItem("favMovies"));
       var updateBaza = baza_string["mov"];
-      var id = updateBaza.length;
-      if (updateBaza.includes([movie_id, media_type, title, id])) {
-        const index = updateBaza.indexOf([movie_id, media_type, title, id]);
-        updateBaza.splice(index, 1);
+
+      czyDuplikat(updateBaza, [movie_id, media_type, title]);
+      if (dubel > -1) {
+        console.log("dubel");
 
         window.localStorage.removeItem("favMovies");
         window.localStorage.setItem(
@@ -14,7 +28,7 @@ export default function MovieCard(props) {
           JSON.stringify({ mov: updateBaza })
         );
       } else {
-        updateBaza.push([movie_id, media_type, title, id]);
+        updateBaza.push([movie_id, media_type, title]);
 
         window.localStorage.removeItem("favMovies");
         window.localStorage.setItem(
@@ -25,7 +39,7 @@ export default function MovieCard(props) {
     } else {
       window.localStorage.setItem(
         "favMovies",
-        JSON.stringify({ mov: [[movie_id, media_type, title, 0]] })
+        JSON.stringify({ mov: [[movie_id, media_type, title]] })
       );
     }
   }

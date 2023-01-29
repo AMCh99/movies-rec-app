@@ -17,7 +17,7 @@ export default function Layout() {
           </li>
           <li>
             <Link to="/MyList">
-              <p className="navP">My List</p>
+              <p className="navP">My Favourites</p>
             </Link>
           </li>
         </ul>

@@ -1,6 +1,4 @@
-import MovieCard from "./MovieCard";
 import MovieTvDesc from "./MovieTvDesc";
-import AddToFav from "./MovieCard";
 import "../CSS/MyList.css";
 import { useState, useEffect } from "react";
 const API_KEY = "f402a4b12e741e93d7e20be5d6f634d6";
@@ -10,10 +8,10 @@ export default function MyList() {
     return (
       <li>
         <button
-          onClick={() => ShowDetails([movie_id, media_type, title, id])}
+          onClick={() => ShowDetails([movie_id, media_type, title])}
           id="heart-button"
         >
-          {title}
+          <p className="butTitle">{title}</p>
         </button>
         <button
           className="delete-from-mylist"
@@ -22,10 +20,11 @@ export default function MyList() {
               window.localStorage.getItem("favMovies")
             );
             var updateBaza = baza_string["mov"];
-            const index = id;
-            updateBaza.splice(index, 1);
-            console.log("ZAWIERA");
-            console.log(updateBaza);
+            updateBaza.forEach((element) => {
+              if (element[0] === movie_id && element[2] === title) {
+                updateBaza.splice(updateBaza.indexOf(element), 1);
+              }
+            });
             window.localStorage.removeItem("favMovies");
             window.localStorage.setItem(
               "favMovies",
@@ -35,7 +34,7 @@ export default function MyList() {
             setLoading(true);
           }}
         >
-          Del form MyList
+          🗑️
         </button>
       </li>
     );
@@ -44,7 +43,7 @@ export default function MyList() {
   function ShowDetails(element) {
     if (element) {
       const query = `https://api.themoviedb.org/3/${element[1]}/${element[0]}?api_key=${API_KEY}&language=en-US`;
-      console.log(element);
+      console.log(query);
       FindFavMovTv(query);
     }
 
@@ -63,6 +62,13 @@ export default function MyList() {
 
     if (searchResult) {
       searchResult.push(data_movies);
+
+      searchResult.map((i) => {
+        if (i.first_air_date) {
+          i.release_date = i.first_air_date;
+          i.title = i.name;
+        }
+      });
 
       setSearchResult(searchResult);
 
@@ -102,24 +108,27 @@ export default function MyList() {
 
   return (
     <div className="list-fav-movies-tvs">
-      {currDetails ? (
-        <MovieTvDesc
-          title={currDetails.title}
-          vote_average={currDetails.vote_average}
-          release_date={currDetails.release_date}
-          overview={currDetails.overview}
-          backdrop_path={`https://image.tmdb.org/t/p/original/${currDetails.backdrop_path}`}
-          poster={`https://image.tmdb.org/t/p/w500/${currDetails.poster_path}`}
-        />
-      ) : (
-        " "
-      )}
-      <div className="details"></div>
-      <ul>
-        {arrayToSearch.map((item) => {
-          return itemInMyList(item[2], item[1], item[0]);
-        })}
-      </ul>
+      <div className="myListDesc">
+        {currDetails ? (
+          <MovieTvDesc
+            title={currDetails.title}
+            vote_average={currDetails.vote_average}
+            release_date={currDetails.release_date}
+            overview={currDetails.overview}
+            backdrop_path={`https://image.tmdb.org/t/p/original/${currDetails.backdrop_path}`}
+            poster={`https://image.tmdb.org/t/p/w500/${currDetails.poster_path}`}
+          />
+        ) : (
+          " "
+        )}
+      </div>
+      <div className="details">
+        <ul>
+          {arrayToSearch.map((item) => {
+            return itemInMyList(item[2], item[1], item[0]);
+          })}
+        </ul>
+      </div>
     </div>
   );
 }
