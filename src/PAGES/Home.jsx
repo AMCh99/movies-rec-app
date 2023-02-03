@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useEffect } from "react";
 import MovieCard from "./MovieCard";
 import "../CSS/Home.css";
@@ -11,11 +11,10 @@ const MOVIES_TRENDING_WEEK_QUERYY = `https://api.themoviedb.org/3/trending/movie
 const TV_TRENDING_WEEK_QUERYY = `https://api.themoviedb.org/3/trending/tv/week?api_key=${API_KEY}`;
 
 export default function Home() {
-  const [isLoading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
   const [tv, setTv] = useState([]);
   const [topMoviesTvs, setTopMoviesTvs] = useState("");
-  const [mainCard, setMainCard] = useState(topMoviesTvs[0]);
+  const [mainCard, setMainCard] = useState();
   const [counter, setCounter] = useState(0);
 
   const trending = async () => {
@@ -36,7 +35,6 @@ export default function Home() {
     setMovies(data_movies.results);
     setTv(data_tv.results);
     setTopMoviesTvs(topMoviesTvs);
-    setMainCard(topMoviesTvs[0]);
   };
   useEffect(() => {
     trending();
@@ -45,11 +43,14 @@ export default function Home() {
   useEffect(() => {
     setTimeout(() => {
       setMainCard(topMoviesTvs[counter]);
-      counter < topMoviesTvs.length ? setCounter(counter + 1) : setCounter(0);
-    }, 10000);
+      console.log(counter);
+      counter >= topMoviesTvs.length - 1
+        ? setCounter(0)
+        : setCounter(counter + 1);
+    }, 7000);
   });
 
-  if (isLoading && mainCard === undefined) {
+  if (mainCard === undefined) {
     return <h1>Loading</h1>;
   }
 
