@@ -1,33 +1,37 @@
 h2 {
   margin-top: 5vh;
   margin-bottom: 1vh;
+  color: black;
 }
+
 .searchResults {
-  /* background-color: aqua; */
-  display: grid;
-  grid-template-columns: repeat(5, 22rem);
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  justify-items: center;
-  width: min-content;
-  margin: auto;
+}
+
+.searchResults .movieCard {
+  margin: 1rem;
 }
 
 .searchSection {
+  margin-top: 2rem;
   display: flex;
 }
 
 form {
-  /* background-color: aquamarine; */
+  display: flex;
   margin: auto;
   text-align: center;
   width: 90%;
+  justify-content: center;
 }
 
 form input,
 form input:focus {
   height: 2rem;
-  width: 90%;
-  max-width: 600px;
+  width: 50%;
+  max-width: 300px;
   border: none;
   border-radius: 5px;
   background-color: rgb(46, 51, 51);
@@ -35,6 +39,8 @@ form input:focus {
   padding: 2px;
   box-shadow: 4px 4px 6px #1c1d1f;
   margin-bottom: 2rem;
+  background-color: #251749;
+  transition: 0.5s;
 }
 
 ::placeholder {
@@ -45,22 +51,21 @@ form button {
   border: none;
   background-color: rgb(46, 51, 51);
   border-radius: 5px;
-  height: 2rem;
-  width: 2rem;
+  height: 2.4rem;
+  width: 2.4rem;
   margin-left: 1rem;
   box-shadow: 4px 4px 6px #1c1d1f;
+  background-color: #251749;
 }
 
-@media only screen and (max-width: 768px) {
-  .titleDesc {
-    font-size: 10px;
-  }
-  .desc {
-    top: 2rem;
-    left: 2rem;
-  }
-  .desc img {
-    width: 75%;
-    height: 75%;
-  }
+form input:hover,
+form input:focus {
+  background-color: #495579;
+  height: 3rem;
+  width: 90%;
+  max-width: 600px;
+}
+form button:hover,
+form button:focus {
+  background-color: #495579;
 }

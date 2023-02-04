@@ -11,7 +11,7 @@ export default function MyList() {
           onClick={() => ShowDetails([movie_id, media_type, title])}
           id="heart-button"
         >
-          <p className="butTitle">{title}</p>
+          {title}
         </button>
         <button
           className="delete-from-mylist"
@@ -34,7 +34,7 @@ export default function MyList() {
             setLoading(true);
           }}
         >
-          🗑️
+          <img src={require("../Images/bin.png")} />
         </button>
       </li>
     );
@@ -90,15 +90,7 @@ export default function MyList() {
     }
   }, [arrayToSearch]);
 
-  if (isLoading) {
-    return (
-      <h1>
-        There are no movies or tvs here, click read heart button to ad some.
-      </h1>
-    );
-  }
-
-  if (arrayToSearch.length === 0) {
+  if (isLoading || arrayToSearch.length === 0) {
     return (
       <h1>
         There are no movies or tvs here, click read heart button to ad some.

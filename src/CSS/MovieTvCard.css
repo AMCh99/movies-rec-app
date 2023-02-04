@@ -1,5 +1,5 @@
 .movieCard {
-  background-color: rgb(46, 51, 51);
+  background-color: #251749;
   color: white;
   text-align: end;
   border-radius: 5px;
@@ -36,7 +36,6 @@
 .titleCard {
   font-size: 1.2rem;
   font-weight: 500;
-  /* background-color: aqua; */
   height: 3vmax;
 }
 .movieCard button {
@@ -46,6 +45,19 @@
 }
 
 #heart-button {
-  /* background: red; */
   font-size: 2vmax;
+}
+
+@keyframes big {
+  0% {
+    background-color: #251749;
+  }
+  100% {
+    background-color: #263159;
+  }
+}
+
+.movieCard:hover {
+  animation: big 0.2s;
+  background-color: #263159;
 }

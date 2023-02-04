@@ -13,9 +13,8 @@
 .desc {
   display: flex;
   position: absolute;
-
-  width: 90vw;
-  top: 6.5rem;
+  width: 90%;
+  top: 7rem;
   left: 4.5vmax;
   height: 30vmax;
 }
@@ -23,10 +22,11 @@
 .desc img {
   -webkit-box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527;
   box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527;
+  width: 379px;
+  height: 569px;
 }
 .titleDesc {
-  font-size: 1.5vmax;
-
+  font-size: 20vw;
   color: white;
   text-shadow: 2px 2px black;
 }
@@ -51,4 +51,33 @@
   text-shadow: 2px 2px black;
   margin-bottom: 2vmax;
   bottom: 0;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.movieTvDesc {
+  animation: fadeIn 1s;
+}
+
+@media only screen and (max-width: 768px) {
+  .titleDesc {
+    font-size: 10px;
+    width: 50vw;
+  }
+  .titleCard {
+    font-size: 12px;
+  }
+  .desc img {
+    width: 134px;
+    height: 201px;
+    -webkit-box-shadow: 2px 2px 4px #1c1d1f, -2px -2px 4px #222527;
+    box-shadow: 2px 2px 4px #1c1d1f, -2px -2px 4px #222527;
+  }
 }

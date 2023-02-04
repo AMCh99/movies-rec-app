@@ -14,8 +14,10 @@ export default function SearchMovie() {
     const data_search = await response_search.json();
 
     data_search.results.map((i) => {
-      i.release_date = i.first_air_date;
-      i.title = i.name;
+      if (i.first_air_date) {
+        i.release_date = i.first_air_date;
+        i.title = i.name;
+      }
     });
 
     data_search.results.map((i) => {
@@ -29,7 +31,6 @@ export default function SearchMovie() {
     <div className="searchApp">
       <div className="searchSection">
         <form>
-          <h2 id="searchAmovie">Search a movie.</h2>
           <input
             value={search}
             type="text"
@@ -43,7 +44,7 @@ export default function SearchMovie() {
               SearchingFunction();
             }}
           >
-            &#128269;
+            <img src={require("../Images/search.png")} />
           </button>
         </form>
       </div>

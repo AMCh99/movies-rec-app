@@ -3,8 +3,10 @@
   padding: 0%;
 }
 
-.trendingApp {
+.trendingApp,
+h1 {
   margin: 1rem;
+  color: black;
 }
 
 .trendingMovies,

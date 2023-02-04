@@ -2,7 +2,7 @@ import "../CSS/MovieTvDesc.css";
 
 export default function MovieTvDesc(props) {
   return (
-    <div className="movieTvDesc">
+    <div className="movieTvDesc" key={props.title}>
       <img src={props.backdrop_path} alt={props.title} className="backdrop" />
       <div className="desc">
         <img src={props.poster} alt={props.title} />

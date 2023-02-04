@@ -12,12 +12,12 @@ export default function Layout() {
           </li>
           <li>
             <Link to="/SearchMovie">
-              <p className="navP">SearchMovie</p>
+              <p className="navP">Search</p>
             </Link>
           </li>
           <li>
             <Link to="/MyList">
-              <p className="navP">My Favourites</p>
+              <p className="navP">Favourites</p>
             </Link>
           </li>
         </ul>
